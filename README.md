@@ -1,4 +1,5 @@
 📈 LSTM vs ARIMA – S&P 500 Forecasting Project
+![Uploading image.png…]()
 
 Ce projet compare les modèles ARIMA, SARIMA, et LSTM pour la prédiction du S&P 500.
 Il inclut :
