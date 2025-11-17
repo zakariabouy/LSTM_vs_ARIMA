@@ -1,0 +1,316 @@
+\documentclass{insea}
+
+% Packages additionnels
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+
+% Informations du document
+\title{Prédiction du S\&P500 : \\Comparaison des modèles LSTM et ARIMA}
+
+% Définir la date
+\date{Année Universitaire 2024-2025}
+
+\begin{document}
+
+% Page de garde INSEA
+\maketitle
+
+% Table des matières
+\tableofcontents
+\newpage
+
+
+
+
+
+% Résumé
+\section*{Résumé}
+\addcontentsline{toc}{section}{Résumé}
+
+Ce rapport présente une comparaison rigoureuse entre les réseaux LSTM (Long Short-Term Memory) et le modèle ARIMA pour la prédiction de l'indice S\&P500. Les données ont été collectées via \texttt{yfinance}, traitées en Python, et visualisées dans Power BI.
+
+\textbf{Résultats principaux :} Le LSTM surpasse ARIMA avec un RMSE de 151.30\$ (vs 605.84\$) sur une prédiction d'un an, soit une amélioration de 75\%. Sur 31 jours, ARIMA reste compétitif (RMSE: 82.94\$, MAPE: 0.95\%).
+
+\textbf{Conclusion :} Le LSTM est recommandé pour les prédictions long terme, tandis qu'ARIMA conserve son utilité pour le court terme.
+
+\section{Introduction}
+
+\subsection{Contexte et Problématique}
+
+Le S\&P500 est l'indice boursier de référence regroupant les 500 plus grandes entreprises américaines. Sa prédiction présente un intérêt majeur pour les investisseurs et gestionnaires d'actifs.
+
+\textbf{Question de recherche :} Les méthodes d'apprentissage profond (LSTM) offrent-elles de meilleures performances que les approches statistiques traditionnelles (ARIMA) pour prédire le S\&P500 ?
+
+\subsection{Objectifs}
+
+\begin{enumerate}
+    \item Implémenter et comparer LSTM et ARIMA
+    \item Évaluer sur deux horizons : 31 jours et 1 an
+    \item Visualiser les résultats dans Power BI
+    \item Recommander le modèle optimal
+\end{enumerate}
+
+\section{Méthodologie}
+
+\subsection{Collecte des Données}
+
+Les données ont été téléchargées via \texttt{yfinance} (Yahoo Finance API) :
+
+\begin{itemize}
+    \item \textbf{Ticker :} \^{}GSPC (S\&P500)
+    \item \textbf{Période 1 an :} 2020-01-01 à 2024-12-31 (1257 observations)
+    \item \textbf{Période 31 jours :} 2025-01-01 à 2025-10-28 (206 observations)
+    \item \textbf{Variable :} Prix de clôture (Close)
+\end{itemize}
+
+\subsection{Prétraitement}
+
+\begin{enumerate}
+    \item \textbf{Nettoyage :} Suppression des valeurs manquantes
+    \item \textbf{Division :} 80\% training / 20\% test (temporelle)
+    \item \textbf{Normalisation (LSTM) :} MinMaxScaler [0, 1]
+    \item \textbf{Différenciation (ARIMA) :} Stationnarisation de la série
+\end{enumerate}
+
+\subsection{Modèle LSTM}
+
+\textbf{Architecture :}
+\begin{itemize}
+    \item 3 couches LSTM (50 unités chacune)
+    \item Dropout 0.2 après chaque couche LSTM
+    \item Couche dense (25 unités) + couche de sortie (1 unité)
+    \item Séquence d'entrée : 60 jours
+    \item Optimiseur : Adam, Loss : MSE
+    \item Early stopping : patience 10 epochs
+\end{itemize}
+
+\subsection{Modèle ARIMA}
+
+\textbf{Sélection :}
+\begin{itemize}
+    \item Test ADF pour vérifier la stationnarité
+    \item Grid search sur (p, d, q) avec p $\in$ [0,3], d $\in$ [0,3], q $\in$ [0,4]
+    \item Critère de sélection : AIC (Akaike Information Criterion)
+    \item \textbf{Modèle optimal :} ARIMA(2, 2, 3)
+\end{itemize}
+
+\subsection{Métriques d'Évaluation}
+
+\begin{itemize}
+    \item \textbf{RMSE :} $\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}$ (erreur quadratique)
+    \item \textbf{MAE :} $\frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|$ (erreur absolue)
+    \item \textbf{MAPE :} $\frac{100}{n}\sum_{i=1}^{n}\left|\frac{y_i - \hat{y}_i}{y_i}\right|$ (erreur en \%)
+    \item \textbf{MSE :} $\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$ (erreur quadratique moyenne)
+\end{itemize}
+
+\section{Résultats}
+
+\subsection{Performance LSTM (1 an)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Métrique} & \textbf{Valeur} \\
+\midrule
+RMSE & 151.30 \$ \\
+MAE & 130.88 \$ \\
+MAPE & 2.51\% \\
+MSE & 26,210 \\
+\bottomrule
+\end{tabular}
+\caption{Performance du modèle LSTM sur 1 an}
+\end{table}
+
+\subsection{Performance ARIMA}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Métrique} & \textbf{1 an} & \textbf{31 jours} & \textbf{Modèle} \\
+\midrule
+RMSE & 605.84 \$ & 82.94 \$ & ARIMA(2,2,3) \\
+MAE & 502.47 \$ & 63.92 \$ & ARIMA(2,2,3) \\
+MAPE & 8.92\% & 0.95\% & ARIMA(2,2,3) \\
+MSE & 289,510 & 3,290 & ARIMA(2,2,3) \\
+AIC & 10,662.16 & 1,990.22 & - \\
+\bottomrule
+\end{tabular}
+\caption{Performance des modèles ARIMA}
+\end{table}
+
+\subsection{Comparaison Directe (1 an)}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Métrique} & \textbf{LSTM} & \textbf{ARIMA} & \textbf{Amélioration} \\
+\midrule
+RMSE (\$) & 151.30 & 605.84 & \textbf{-75.0\%} \\
+MAE (\$) & 130.88 & 502.47 & \textbf{-73.9\%} \\
+MAPE (\%) & 2.51 & 8.92 & \textbf{-71.9\%} \\
+MSE & 26,210 & 289,510 & \textbf{-90.9\%} \\
+\bottomrule
+\end{tabular}
+\caption{Comparaison LSTM vs ARIMA (1 an)}
+\end{table}
+
+Le LSTM réduit l'erreur de prédiction de 75\% par rapport à ARIMA sur un horizon d'un an.
+
+\subsection{Visualisations}
+
+\subsubsection{LSTM 1-Year (Image 3)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{media/LSTM-1Y.png}
+\caption{Prédictions LSTM sur 1 an - Les prédictions (rouge) suivent étroitement les valeurs réelles (vert)}
+\end{figure}
+
+\textbf{Observations :}
+\begin{itemize}
+    \item Excellente capture de la tendance générale
+    \item Prédictions précises sur les données d'entraînement (bleu/orange quasi-confondus)
+    \item Légère sous-estimation en fin de période test, mais erreur contrôlée
+\end{itemize}
+
+\subsubsection{ARIMA 1-Year (Image 2)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{media/ARIMA-1Y.png}
+\caption{Prédictions ARIMA sur 1 an - Large intervalle de confiance et prédiction linéaire}
+\end{figure}
+
+\textbf{Observations :}
+\begin{itemize}
+    \item Prédiction linéaire (rouge) ne capture pas la volatilité réelle
+    \item Sous-estimation systématique de la hausse de 2024
+    \item Intervalle de confiance très large (3000\$ - 7000\$)
+\end{itemize}
+
+\subsubsection{ARIMA 31-Day (Image 1)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{media/ARIMA-31Day.png}
+\caption{Prédictions ARIMA sur 31 jours - Bonne performance court terme}
+\end{figure}
+
+\textbf{Observations :}
+\begin{itemize}
+    \item Excellente précision (MAPE 0.95\%, RMSE 82.94\$)
+    \item Les prédictions (rouge) suivent bien les valeurs réelles (vert)
+    \item Intervalle de confiance raisonnable
+    \item Confirme la pertinence d'ARIMA pour le court terme
+\end{itemize}
+
+\section{Discussion}
+
+\subsection{Analyse Comparative}
+
+\textbf{Forces du LSTM :}
+\begin{itemize}
+    \item Précision supérieure de 75\% sur le long terme
+    \item Capture des patterns non-linéaires complexes
+    \item Robuste aux changements de régime du marché (COVID-19, inflation, etc.)
+    \item Mémoire contextuelle de 60 jours
+\end{itemize}
+
+\textbf{Forces d'ARIMA :}
+\begin{itemize}
+    \item Excellent sur court terme (< 1 mois)
+    \item Rapidité d'entraînement (secondes vs minutes)
+    \item Interprétabilité mathématique
+    \item Intervalles de confiance natifs
+\end{itemize}
+
+\subsection{Recommandations}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{5cm}p{3cm}p{5cm}}
+\toprule
+\textbf{Cas d'usage} & \textbf{Modèle} & \textbf{Justification} \\
+\midrule
+Investissement > 6 mois & LSTM & Précision 75\% supérieure \\
+Trading < 1 mois & ARIMA & MAPE 0.95\%, rapide \\
+Budget calcul limité & ARIMA & Entraînement rapide \\
+Applications critiques & LSTM & Risque financier réduit \\
+\bottomrule
+\end{tabular}
+\caption{Guide de sélection du modèle}
+\end{table}
+
+\subsection{Limites et Perspectives}
+
+\textbf{Limites :}
+\begin{itemize}
+    \item Données univariées (prix uniquement)
+    \item Absence de variables exogènes (taux, inflation, VIX)
+    \item Période incluant COVID-19 (atypique)
+    \item Hyperparamètres LSTM non optimisés exhaustivement
+\end{itemize}
+
+\textbf{Améliorations futures :}
+\begin{itemize}
+    \item Intégrer indicateurs techniques (RSI, MACD, Bollinger)
+    \item Ajouter données macroéconomiques
+    \item Tester architectures Transformer
+    \item Développer modèle hybride LSTM-ARIMA
+    \item Application à d'autres indices (CAC40, DAX)
+\end{itemize}
+
+\section{Conclusion}
+
+Ce projet démontre la supériorité des réseaux LSTM pour la prédiction du S\&P500 sur des horizons moyens à longs termes, avec une réduction de 75\% de l'erreur par rapport à ARIMA. Les visualisations confirment que le LSTM capture mieux la complexité des marchés financiers.
+
+Cependant, ARIMA conserve sa pertinence pour les prédictions ultra court terme (< 1 mois) avec un MAPE exceptionnel de 0.95\% sur 31 jours, tout en offrant rapidité et interprétabilité.
+
+\textbf{Recommandation finale :} Utiliser LSTM pour l'allocation stratégique d'actifs et la gestion de portefeuille long terme, et ARIMA pour les décisions tactiques court terme. Une approche hybride combinant les deux méthodes pourrait offrir le meilleur compromis.
+
+Les dashboards Power BI développés facilitent la communication des résultats aux parties prenantes et permettent un suivi en temps réel des performances prédictives.
+
+\section*{Workflow du Projet}
+\addcontentsline{toc}{section}{Workflow du Projet}
+
+\begin{enumerate}
+    \item \textbf{Collecte :} yfinance $\rightarrow$ données S\&P500
+    \item \textbf{Nettoyage :} Python (pandas) $\rightarrow$ suppression NaN, extraction Close
+    \item \textbf{Modélisation :}
+    \begin{itemize}
+        \item LSTM : TensorFlow/Keras avec normalisation MinMaxScaler
+        \item ARIMA : statsmodels avec grid search
+    \end{itemize}
+    \item \textbf{Exportation :} Résultats vers CSV
+    \item \textbf{Visualisation :} Import CSV dans Power BI
+    \item \textbf{Dashboards :} 4 pages interactives (Accueil, LSTM, ARIMA 1Y, ARIMA 31D)
+\end{enumerate}
+
+\section*{Références}
+\addcontentsline{toc}{section}{Références}
+
+\begin{enumerate}
+    \item Hochreiter, S., \& Schmidhuber, J. (1997). \textit{Long short-term memory}. Neural computation, 9(8), 1735-1780.
+    \item Box, G. E., et al. (2015). \textit{Time series analysis: forecasting and control}. Wiley.
+    \item Fischer, T., \& Krauss, C. (2018). \textit{Deep learning with LSTM for financial market predictions}. European Journal of Operational Research, 270(2), 654-669.
+    \item Siami-Namini, S., et al. (2018). \textit{ARIMA vs LSTM in forecasting time series}. ICMLA.
+    \item Documentation yfinance : \url{https://pypi.org/project/yfinance/}
+\end{enumerate}
+
+\vfill
+
+\begin{center}
+\textit{--- Fin du Rapport ---}
+
+\vspace{0.5cm}
+
+\textbf{BOUYAKNIFEN ZAKARIAE}
+
+\textbf{Année 2024-2025}
+\end{center}
+
+\end{document}

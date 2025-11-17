@@ -158,47 +158,36 @@ jupyter notebook notebooks/ARIMA_31day.ipynb
 ```
 📦 sp500-lstm-arima-prediction/
 │
-├── 📊 data/
-│   ├── raw/                    # Raw S&P500 data from yfinance
-│   ├── processed/              # Cleaned & normalized data
-│   └── predictions/            # Model outputs (CSV)
-│
-├── 📓 notebooks/
+├── 📊 DATA/
+│   ├── data_ARIMA_1Y/           # Model outputs (CSV)
+│   ├── data_ARIMA_31day/        # Model outputs (CSV)
+│   ├── data_LSTM_1Y/            # Model outputs (CSV)
+|   └── Images/
+│       ├── ARIMA-1Y.png
+│       ├── ARIMA-31Day.png
+│       ├── LSTM-1Y.png
+│       ├── pbi_ARIMA_1Y.png
+│       ├── pbi_ARIMA_31D.png
+|       ├── pbi_Home_page.png
+│       └── pbi_LSTM_1Y.png
+├── 📄 docs/
+│   ├── Latex_main.tex            # LaTeX report (French)
+│   ├── Rapport.pdf            # Final PDF report
+│   └── insea.cls              # INSEA LaTeX template
+|
+├── 📓 note_books/
 │   ├── LSTM_1Y.ipynb          # 🔵 LSTM 1-year implementation
 │   ├── ARIMA_1Y.ipynb         # 🟠 ARIMA 1-year implementation
 │   ├── ARIMA_31day.ipynb      # 🟢 ARIMA 31-day implementation
-│   └── EDA.ipynb              # Exploratory Data Analysis
+│   └── cleaning_data.ipynb    # Exploratory Data Analysis
 │
-├── 🐍 src/
-│   ├── data_loader.py         # Data collection via yfinance
-│   ├── preprocessing.py       # Data cleaning & preparation
-│   ├── lstm_model.py          # LSTM architecture & training
-│   ├── arima_model.py         # ARIMA grid search & fitting
-│   ├── evaluation.py          # Metrics calculation
-│   └── visualization.py       # Plotting utilities
-│
-├── 📈 powerbi/
-│   └── SP500_Dashboard.pbix   # Interactive Power BI dashboard
-│
-├── 📄 docs/
-│   ├── rapport.tex            # LaTeX report (French)
-│   ├── rapport.pdf            # Final PDF report
-│   └── insea.cls              # INSEA LaTeX template
-│
-├── 🖼️ images/
-│   ├── dashboard_lstm_1y.png
-│   ├── dashboard_arima_1y.png
-│   ├── dashboard_arima_31d.png
-│   ├── architecture/
-│   │   ├── lstm_architecture.png
-│   │   └── workflow.png
-│   └── results/
-│       └── comparison_charts.png
-│
-├── 📋 requirements.txt        # Python dependencies
+├── 📈 PowerBI/
+│   └── S&P500_Forecasting.pbix   # Interactive Power BI dashboard
+|
 ├── 🔧 .gitignore
+├── 📜 LICENSE (MIT)
 ├── 📖 README.md
-└── 📜 LICENSE (MIT)
+├── 📋 requirements.txt        # Python dependencies
 ```
 
 ---
