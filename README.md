@@ -306,11 +306,11 @@ Output Layer (1 unit)
 <table>
 <tr>
 <td width="33%">
-<img src="DATA/Images/LSTM_1Y.png" width="100%">
+<img src="DATA/Images/LSTM-1Y.png" width="100%">
 <p align="center"><b>LSTM 1-Year</b><br>✅ Excellent fit</p>
 </td>
 <td width="33%">
-<img src="DATA/Images/ARIMA_1Y.png" width="100%">
+<img src="DATA/Images/ARIMA-1Y.png" width="100%">
 <p align="center"><b>ARIMA 1-Year</b><br>⚠️ Wide intervals</p>
 </td>
 <td width="33%">
@@ -667,7 +667,7 @@ Want to collaborate? **[Contact me](#-contact--connect)**
 
 <img src="https://raw.githubusercontent.com/BEPb/BEPb/master/assets/Bottom_up.svg" width="100%" />
 
-**Made with ❤️ by Data Science Student | 2024-2025**
+**Made with ❤️ by a Data Science Enthusiast | 2024-2025**
 
 *Empowering Financial Decisions with AI*
 
