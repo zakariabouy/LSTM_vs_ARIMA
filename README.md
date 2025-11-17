@@ -79,7 +79,7 @@ TensorFlow • Keras • statsmodels • Power BI • Python • Pandas • NumP
 
 ### 📊 LSTM 1-Year Prediction Dashboard
 
-<img src="images/dashboard_lstm_1y.png" width="90%" alt="LSTM Dashboard">
+<img src="DATA/Images/pbi_LSTM_1Y.png" width="90%" alt="LSTM Dashboard">
 
 **Visualization Features:**
 - Real-time predictions vs actual prices
@@ -91,7 +91,7 @@ TensorFlow • Keras • statsmodels • Power BI • Python • Pandas • NumP
 
 ### 📊 ARIMA 1-Year Prediction Dashboard
 
-<img src="images/dashboard_arima_1y.png" width="90%" alt="ARIMA 1Y Dashboard">
+<img src="DATA/Images/pbi_ARIMA_1Y.png" width="90%" alt="ARIMA 1Y Dashboard">
 
 **Key Observations:**
 - Linear trend prediction with wide confidence intervals
@@ -102,7 +102,7 @@ TensorFlow • Keras • statsmodels • Power BI • Python • Pandas • NumP
 
 ### 📊 ARIMA 31-Day Prediction Dashboard
 
-<img src="images/dashboard_arima_31d.png" width="90%" alt="ARIMA 31D Dashboard">
+<img src="DATA/Images/pbi_ARIMA_31D.png" width="90%" alt="ARIMA 31D Dashboard">
 
 **Highlights:**
 - Exceptional short-term accuracy (MAPE: 0.95%)
@@ -306,15 +306,15 @@ Output Layer (1 unit)
 <table>
 <tr>
 <td width="33%">
-<img src="images/lstm_1year.png" width="100%">
+<img src="DATA/Images/LSTM_1Y.png" width="100%">
 <p align="center"><b>LSTM 1-Year</b><br>✅ Excellent fit</p>
 </td>
 <td width="33%">
-<img src="images/arima_1year.png" width="100%">
+<img src="DATA/Images/ARIMA_1Y.png" width="100%">
 <p align="center"><b>ARIMA 1-Year</b><br>⚠️ Wide intervals</p>
 </td>
 <td width="33%">
-<img src="images/arima_31day.png" width="100%">
+<img src="DATA/Images/ARIMA-31Day.png" width="100%">
 <p align="center"><b>ARIMA 31-Day</b><br>✅ High precision</p>
 </td>
 </tr>
@@ -432,57 +432,10 @@ Output Layer (1 unit)
 
 ### 📖 Available Resources
 
-- **📄 Full Report (PDF)**: [View Report](docs/rapport.pdf) - Complete analysis in French (LaTeX)
+- **📄 Full Report (PDF)**: [View Report](Rapport.pdf) - Complete analysis in French (LaTeX)
 - **📓 Jupyter Notebooks**: Fully commented code with explanations
 - **📊 Power BI Dashboard**: Interactive visualizations (`.pbix` file)
-- **📋 Technical Specification**: [METHODOLOGY.md](docs/METHODOLOGY.md)
 
-### 🎓 Academic Context
-
-<table>
-<tr>
-<td>
-<b>Institution</b>
-</td>
-<td>
-Institut National de Statistique et d'Économie Appliquée (INSEA)
-</td>
-</tr>
-<tr>
-<td>
-<b>Course</b>
-</td>
-<td>
-Advanced Time Series Analysis
-</td>
-</tr>
-<tr>
-<td>
-<b>Students</b>
-</td>
-<td>
-Zakariae BOUYAKNIFEN, Mohsine MAIET
-</td>
-</tr>
-<tr>
-<td>
-<b>Supervisor</b>
-</td>
-<td>
-Prof. Fadoua BADAOUI
-</td>
-</tr>
-<tr>
-<td>
-<b>Academic Year</b>
-</td>
-<td>
-2024-2025
-</td>
-</tr>
-</table>
-
----
 
 ## 🔄 Workflow Pipeline
 
@@ -508,7 +461,6 @@ graph LR
    - Frequency: Daily close prices
 
 2. **Preprocessing** 🧹
-   - Handle missing values
    - Normalize (LSTM) / Difference (ARIMA)
    - Create sequences (LSTM: 60 days)
 
@@ -611,23 +563,14 @@ in the Software without restriction...
 
 <div align="center">
 
-### 👥 Project Team
-
 <table>
 <tr>
 <td align="center">
-<img src="https://github.com/your-username.png" width="100px;" alt="Zakariae"/><br>
+<img src="https://github.com/zakariabouy.png" width="100px;" alt="Zakariae"/><br>
 <b>Zakariae BOUYAKNIFEN</b><br>
-<a href="https://linkedin.com/in/your-profile">LinkedIn</a> •
-<a href="https://github.com/your-username">GitHub</a><br>
-📧 zakariae.bouyaknifen@insea.ac.ma
-</td>
-<td align="center">
-<img src="https://github.com/mohsine-username.png" width="100px;" alt="Mohsine"/><br>
-<b>Mohsine MAIET</b><br>
-<a href="https://linkedin.com/in/mohsine-profile">LinkedIn</a> •
-<a href="https://github.com/mohsine-username">GitHub</a><br>
-📧 mohsine.maiet@insea.ac.ma
+<a href="https://linkedin.com/in/zakariae-bouyaknifen">LinkedIn</a> •
+<a href="https://github.com/zakariabouy">GitHub</a><br>
+📧 zikobouy@gmail.com
 </td>
 </tr>
 </table>
@@ -638,7 +581,7 @@ in the Software without restriction...
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/your-username)
 [![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:zakariae.bouyaknifen@insea.ac.ma)
 
-**Project Repository**: [github.com/your-username/sp500-lstm-arima-prediction](https://github.com/your-username/sp500-lstm-arima-prediction)
+**Project Repository**: [github.com/zakariabouy/LSTM_vs_ARIMA](https://github.com/zakariabouy/LSTM_vs_ARIMA)
 
 </div>
 
@@ -650,9 +593,7 @@ in the Software without restriction...
 
 ### Special Thanks To
 
-🎓 **INSEA** - Institut National de Statistique et d'Économie Appliquée
-
-👩‍🏫 **Prof. Fadoua BADAOUI** - Project Supervisor
+👩‍🏫 **Prof. Youssef KARIM EL ALAOUI** - Project Supervisor
 
 🔧 **TensorFlow Team** - Deep Learning Framework
 
@@ -710,7 +651,7 @@ in the Software without restriction...
 
 ### ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/sp500-lstm-arima-prediction&type=Date)](https://star-history.com/#your-username/sp500-lstm-arima-prediction&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=zakariabouy/LSTM_vs_ARIMA&type=Date)](https://star-history.com/#zakariabouy/LSTM_vs_ARIMA&Date)
 
 ---
 
@@ -720,13 +661,13 @@ Found this project helpful? **Give it a ⭐!**
 
 Have questions or suggestions? **[Open an issue](../../issues)**
 
-Want to collaborate? **[Contact us](#-contact--connect)**
+Want to collaborate? **[Contact me](#-contact--connect)**
 
 ---
 
 <img src="https://raw.githubusercontent.com/BEPb/BEPb/master/assets/Bottom_up.svg" width="100%" />
 
-**Made with ❤️ by INSEA Students | 2024-2025**
+**Made with ❤️ by Data Science Student | 2024-2025**
 
 *Empowering Financial Decisions with AI*
 
