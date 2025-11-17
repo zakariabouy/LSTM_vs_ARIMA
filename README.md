@@ -1,7 +1,7 @@
 <div align="center">
 
-# 📈 S&P500 Stock Market Prediction
-### LSTM vs ARIMA: A Deep Learning vs Statistical Approach
+# LSTM vs ARIMA
+### A Deep Learning vs Statistical Approach
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13+-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
@@ -156,7 +156,7 @@ jupyter notebook notebooks/ARIMA_31day.ipynb
 ## 📁 Project Architecture
 
 ```
-📦 sp500-lstm-arima-prediction/
+📦 LSTM_vs_ARIMA/
 │
 ├── 📊 DATA/
 │   ├── data_ARIMA_1Y/           # Model outputs (CSV)
@@ -421,7 +421,7 @@ Output Layer (1 unit)
 
 ### 📖 Available Resources
 
-- **📄 Full Report (PDF)**: [View Report](Rapport.pdf) - Complete analysis in French (LaTeX)
+- **📄 Full Report (PDF)**: [View Report](docs/Rapport.pdf) - Complete analysis in French (LaTeX)
 - **📓 Jupyter Notebooks**: Fully commented code with explanations
 - **📊 Power BI Dashboard**: Interactive visualizations (`.pbix` file)
 
